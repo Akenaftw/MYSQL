@@ -5,7 +5,7 @@ class Connection
 {
 
     private PDO $pdo;
-    private PDOStatement $handle;
+
 
 
     public function __construct()
@@ -13,7 +13,7 @@ class Connection
         $this->pdo = $this->openConnection();
     }
 
-    public function openConnection(): PDO
+    public function openConnection()
     {
         $dbhost = "localhost";
         $dbuser = "becode";
@@ -26,18 +26,19 @@ class Connection
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ];*/
 
-        $this->pdo = new PDO('mysql:host=localhost;dbname=Becode', $dbuser, $dbpass);
+        return new PDO('mysql:host=localhost;dbname=Becode', $dbuser, $dbpass);
     }
 
 
     public function storeInput($first_name, $last_name, $email, $created_at)
     {
-        $this->handle = $this->pdo->prepare('insert into student (first_name,last_name,email,created_at) values (:first_name, :last_name, :email, :created_at)');
-        $this->handle->bindValue(":first_name", $first_name);
-        $this->handle->bindValue("last_name",$last_name);
-        $this->handle->bindValue("email",$email);
-        $this->handle->bindValue("created_at", $created_at);
-        $this->handle->execute();
+        $handle = $this->pdo->prepare('insert into student (first_name,last_name,email,created_at) values (:first_name, :last_name, :email, :created_at)');
+        $handle->bindValue(":first_name", $first_name);
+        $handle->bindValue("last_name",$last_name);
+        $handle->bindValue("email",$email);
+        $handle->bindValue("created_at", $created_at);
+        $handle->bindValue("password",$created_at);
+        $handle->execute();
     }
 
 }
