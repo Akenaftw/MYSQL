@@ -7,6 +7,7 @@ class User
     private string $last_name;
     private string $email;
     private string $created_at;
+    private string $password;
 
     /**
      * User constructor.

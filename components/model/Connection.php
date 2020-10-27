@@ -30,14 +30,14 @@ class Connection
     }
 
 
-    public function storeInput($first_name, $last_name, $email, $created_at)
+    public function storeInput($first_name, $last_name, $email, $password, $created_at)
     {
-        $handle = $this->pdo->prepare('insert into student (first_name,last_name,email,created_at) values (:first_name, :last_name, :email, :created_at)');
+        $handle = $this->pdo->prepare('insert into student (first_name,last_name,email,password,created_at) values (:first_name, :last_name, :email, :password, :created_at)');
         $handle->bindValue(":first_name", $first_name);
-        $handle->bindValue("last_name",$last_name);
-        $handle->bindValue("email",$email);
-        $handle->bindValue("created_at", $created_at);
-        $handle->bindValue("password",$created_at);
+        $handle->bindValue(":last_name",$last_name);
+        $handle->bindValue(":email",$email);
+        $handle->bindValue(":password",$password);
+        $handle->bindValue(":created_at", $created_at);
         $handle->execute();
     }
 
