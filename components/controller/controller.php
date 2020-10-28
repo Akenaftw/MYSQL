@@ -1,6 +1,6 @@
 <?php
 
-
+private string $password = Connection::[$password];
 
 function whatIsHappening()
 {
@@ -52,6 +52,10 @@ if (isset($_POST["submit"])) {
 $show = "components/view/login.php";
 if (isset($_POST["registrationLink"])){
     $show = "components/view/register.php";
+}
+
+if (isset($_POST["login"])){
+
 }
 include $show;
 

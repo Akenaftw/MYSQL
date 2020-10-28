@@ -24,6 +24,7 @@ private bool $loggedIn;
     {
         if(password_verify($this->password, $hash)){
             $session = new Session($this->email);
+
         }
     }
 }
