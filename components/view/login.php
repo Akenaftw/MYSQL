@@ -11,3 +11,4 @@
 <form method="post">
     <input type="submit" name="registrationLink" value="Register Here" id="registrationLink">
 </form>
+

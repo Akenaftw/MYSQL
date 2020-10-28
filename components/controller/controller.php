@@ -10,8 +10,8 @@ function whatIsHappening()
     var_dump($_POST);
     echo '<h2>$_COOKIE</h2>';
     var_dump($_COOKIE);
-    //echo '<h2>$_SESSION</h2>';
-    //var_dump($_SESSION);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
 }
 
 if (isset($_POST["submit"])) {

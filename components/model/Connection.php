@@ -32,6 +32,7 @@ class Connection
 
     public function storeInput($first_name, $last_name, $email, $password, $created_at)
     {
+        $password = password_hash($password, PASSWORD_BCRYPT);
         $handle = $this->pdo->prepare('insert into student (first_name,last_name,email,password,created_at) values (:first_name, :last_name, :email, :password, :created_at)');
         $handle->bindValue(":first_name", $first_name);
         $handle->bindValue(":last_name",$last_name);
@@ -41,4 +42,10 @@ class Connection
         $handle->execute();
     }
 
+    public function getLoginInfo($email){
+        $handle = $this->pdo->prepare('SELECT password FROM student where email = :email');
+        $handle->bindValue(":email",$email);
+        $handle->execute();
+        return $this->handle->fetch();
+    }
 }
