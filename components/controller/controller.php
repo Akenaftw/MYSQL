@@ -1,7 +1,5 @@
 <?php
 
-private string $password = Connection::[$password];
-
 function whatIsHappening()
 {
     echo '<h2>$_GET</h2>';
@@ -32,6 +30,7 @@ if (isset($_POST["submit"])) {
     }
     if (isset($_POST["password"])) {
         if ($_POST["password"] == $_POST["passwordConf"]){
+            //hash the password here before adding it into a variable
             $password = $_POST["password"];
         }
         else{
@@ -49,13 +48,20 @@ if (isset($_POST["submit"])) {
         echo "Please fill in all the required fields!";
     }
 }
+
+if (isset($_POST["login"])){
+    $authorisation = new Authorisation($_POST["email"], $_POST["password"]);
+    //auth model gebruiken als check
+    //correcte view doorgeven ($show)
+    //correcte foutmelding indien error (else)
+    // if session logged in skip login page
+}
 $show = "components/view/login.php";
 if (isset($_POST["registrationLink"])){
     $show = "components/view/register.php";
 }
-
-if (isset($_POST["login"])){
-
+else if (isset($_SESSION["loggedIn"])){
+    $show = "components/view/landingpage.php";
 }
 include $show;
 

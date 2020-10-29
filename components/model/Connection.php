@@ -41,11 +41,16 @@ class Connection
         $handle->bindValue(":created_at", $created_at);
         $handle->execute();
     }
+    public function getDetails(){
+        $handle = $this->pdo->prepare('SELECT * FROM student');
+        $handle->execute();
+        return $handle->fetchAll();
+    }
 
     public function getLoginInfo($email){
         $handle = $this->pdo->prepare('SELECT password FROM student where email = :email');
         $handle->bindValue(":email",$email);
         $handle->execute();
-        return $this->handle->fetch();
+        return $handle->fetch();
     }
 }

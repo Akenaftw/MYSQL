@@ -16,15 +16,19 @@ private bool $loggedIn;
         $this->email = $email;
         $this->password = $password;
         $connection = new Connection();
-        $hash = $connection->getLoginInfo();
-        $this->authenticate($hash);
+        $hash = $connection->getLoginInfo($this->email);
+        $this->authenticate($hash["password"]);
     }
 
-    private function authenticate($hash)
+    private function authenticate($encryptedPW)
     {
-        if(password_verify($this->password, $hash)){
-            $session = new Session($this->email);
 
+        if(password_verify($this->password, $encryptedPW)){
+            echo "session is set";
+            $session = new Session($this->email);
+        }
+        else{
+        echo "Invalid username or password, please try again";
         }
     }
 }

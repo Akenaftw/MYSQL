@@ -5,6 +5,9 @@ error_reporting(E_ALL);
 
 session_start();
 require 'components/model/Connection.php';
+require 'components/model/Authorisation.php';
+require 'components/model/Session.php';
 require 'components/controller/controller.php';
 require 'components/view/body.php';
+
 
